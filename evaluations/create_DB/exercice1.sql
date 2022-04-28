@@ -23,29 +23,30 @@ CREATE TABLE est_compose (
     pro_num INT UNSIGNED NOT NULL,
     est_qte INT UNSIGNED NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
--- Indexes for tables
---table client
+
 ALTER TABLE client
 ADD PRIMARY KEY (cli_num);
+
 ALTER TABLE client
 MODIFY cli_num int UNSIGNED NOT NULL AUTO_INCREMENT;
 CREATE UNIQUE INDEX newClient ON client(cli_nom);
---table commendeALTER TABLE client
-ADD PRIMARY KEY (cli_num);
+
 ALTER TABLE client
 MODIFY cli_num int UNSIGNED NOT NULL AUTO_INCREMENT;
+
 ALTER TABLE commande
 ADD PRIMARY KEY (com_num);
---table produit
+
 ALTER TABLE produit
 ADD PRIMARY KEY (pro_num);
+
 ALTER TABLE produit
 MODIFY pro_num INT UNSIGNED NOT NULL AUTO_INCREMENT;
---constraints on TABLES
+
 ALTER TABLE commande
-ADD FOREIGN KEY cli_num REFERENCES client(cli_num);
+ADD FOREIGN KEY (cli_num) REFERENCES client(cli_num);
 ALTER TABLE est_compose
 ADD (
-        FOREIGN KEY com_num REFERENCES commande(com_num),
-        FOREIGN KEY pro_num REFERENCES produit(pro_num)
+        FOREIGN KEY (com_num) REFERENCES commande(com_num),
+        FOREIGN KEY (pro_num) REFERENCES produit(pro_num)
     );
