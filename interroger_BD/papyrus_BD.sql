@@ -88,3 +88,73 @@ from fournis
     join produit on vente.codart = produit.codart
     join ligcom on produit.codart = ligcom.codart
 where qteliv != 0;
+--13
+--1
+select numcom,
+    datcom
+from entcom
+where numfou = (
+        select numfou
+        from entcom
+        where numcom = 70210
+    );
+--2
+select numcom,
+    datcom
+from entcom
+where numfou = (
+        select fournis.numfou
+        from fournis
+            join entcom on fournis.numfou = entcom.numfou
+        where numcom = 70210
+    );
+--14
+select libart,
+    prix1
+from produit
+    join vente on produit.codart = vente.codart
+where (
+        qte1 != 0
+        or qte2 != 0
+        or qte3 != 0
+    )
+    AND prix1 < (
+        select min(prix1)
+        from vente
+        where codart like 'R%'
+    );
+--15
+select produit.codart,
+    nomfou
+from fournis
+    join entcom on fournis.numfou = entcom.numfou
+    join ligcom on ligcom.numcom = entcom.numcom
+    join produit on ligcom.codart = produit.codart
+where qteliv > 0
+    AND stkphy <= (stkale * 150 / 100);
+--16
+select distinct produit.codart,
+    nomfou
+from fournis
+    join entcom on fournis.numfou = entcom.numfou
+    join ligcom on ligcom.numcom = entcom.numcom
+    join produit on ligcom.codart = produit.codart
+    join vente on vente.codart = produit.codart
+where qteliv > 0
+    AND stkphy <= (stkale * 150 / 100)
+    AND delliv > 30;
+--17
+select distinct produit.codart,
+    nomfou,
+    sum(stkphy)
+from fournis
+    join entcom on fournis.numfou = entcom.numfou
+    join ligcom on ligcom.numcom = entcom.numcom
+    join produit on ligcom.codart = produit.codart
+    join vente on vente.codart = produit.codart
+where qteliv > 0
+    AND stkphy <= (stkale * 150 / 100)
+    AND delliv > 30
+group by nomfou,
+    produit.codart;
+--18
