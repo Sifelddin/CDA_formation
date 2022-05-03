@@ -70,7 +70,7 @@ select produit.codart,
     libart,
     (qtecde * priuni) total
 from produit
-    join ligcom on produit.cod art = ligcom.codart
+    join ligcom on produit.codart = ligcom.codart
     join entcom on ligcom.numcom = entcom.numcom
     join fournis on fournis.numfou = entcom.numfou
 where instr(obscom, 'urgent') > 0;
@@ -158,3 +158,36 @@ where qteliv > 0
 group by nomfou,
     produit.codart;
 --18
+select distinct produit.codart
+from produit
+    join ligcom on produit.codart = ligcom.codart
+where qteann * 90 / 100 > qtecde;
+--19
+select nomfou,
+    sum(
+        qte1 * (prix1 + prix1 * 0.2) + qte2 * (prix2 + prix2 * 0.2) + qte3 *(prix3 + prix3 * 0.2)
+    ) as CA,
+    datcom
+from vente
+    join fournis on vente.numfou = fournis.numfou
+    join entcom on fournis.numfou = entcom.numfou
+group by nomfou,
+    datcom;
+-- LES BESOINS DE MISE A JOUR
+--1 
+UPDATE vente
+set prix1 = prix1 + prix1 * 4 / 100,
+    prix2 = prix2 + prix2 * 2 / 100
+where numfou = 9180;
+--2
+update vente
+set prix2 = prix1
+where prix2 = 0;
+--3
+update entcom
+    join fournis on fournis.numfou = entcom.numfou
+set obscom = ""
+where satisf < 5;
+--4
+DELETE from produit
+where codart = "I110";
