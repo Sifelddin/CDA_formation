@@ -1,9 +1,5 @@
 <?php
 
-
-$a = "bom";
-$a = 5;
-
 $Mois = [
     "janvier" => 31,
     "février" => 28,
@@ -82,5 +78,30 @@ $capitales = array(
     "Vilnius" => "Lituanie",
     "Zagreb" => "Croatie"
 );
+// 1 affichage de la liste des capitales  (par ordre alphabétique) suivie du nom du pays.
+//ksort($capitales);
 
-asort($capitales);
+//2 affichage la liste des pays (par ordre alphabétique) suivie du nom de la capitale.
+$capitales = array_flip($capitales);
+ksort($capitales);
+
+
+// Affichage le nombre de pays dans le tableau.
+
+// suppression des pays commençant par la lettre B
+function filter_func($pays){
+    return $pays[0] != "B";
+}
+$filtered_arr = array_filter($capitales , 'filter_func', ARRAY_FILTER_USE_KEY );
+
+$capitales = $filtered_arr;
+
+$nb = count($capitales);
+
+$departements = array(
+    "Hauts-de-france" => array("Aisne", "Nord", "Oise", "Pas-de-Calais", "Somme"),
+    "Bretagne" => array("Côtes d'Armor", "Finistère", "Ille-et-Vilaine", "Morbihan"),
+    "Grand-Est" => array("Ardennes", "Aube", "Marne", "Haute-Marne", "Meurthe-et-Moselle", "Meuse", "Moselle", "Bas-Rhin", "Haut-Rhin", "Vosges"),
+    "Normandie" => array("Calvados", "Eure", "Manche", "Orne", "Seine-Maritime")
+);
+

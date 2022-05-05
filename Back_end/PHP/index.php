@@ -2,10 +2,6 @@
 
 require_once 'src.php';
 
-$a = 5;
-
-$a = 6;
-
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +17,7 @@ $a = 6;
 
 <body>
     <main class="main">
+
         <table class="table">
             <thead>
                 <tr>
@@ -41,8 +38,8 @@ $a = 6;
         <table class="table">
             <thead>
                 <tr>
-                    <th>MOIS</th>
-                    <th>Nombre de jours</th>
+                    <th>Capitales</th>
+                    <th>Pays</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +50,8 @@ $a = 6;
                         <td><?= $country ?></td>
                     </tr>
                 <?php endforeach; ?>
+                <tr><td><strong>nombre de pays <?= $nb ?></strong> </td></tr>
+                
             </tbody>
         </table>
     </main>
