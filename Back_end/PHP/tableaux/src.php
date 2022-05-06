@@ -89,19 +89,22 @@ ksort($capitales);
 // Affichage le nombre de pays dans le tableau.
 
 // suppression des pays commençant par la lettre B
-function filter_func($pays){
+function filter_func($pays)
+{
     return $pays[0] != "B";
 }
-$filtered_arr = array_filter($capitales , 'filter_func', ARRAY_FILTER_USE_KEY );
+$filtered_arr = array_filter($capitales, 'filter_func', ARRAY_FILTER_USE_KEY);
 
 $capitales = $filtered_arr;
 
 $nb = count($capitales);
 
 $departements = array(
-    "Hauts-de-france" => array("Aisne", "Nord", "Oise", "Pas-de-Calais", "Somme"),
-    "Bretagne" => array("Côtes d'Armor", "Finistère", "Ille-et-Vilaine", "Morbihan"),
-    "Grand-Est" => array("Ardennes", "Aube", "Marne", "Haute-Marne", "Meurthe-et-Moselle", "Meuse", "Moselle", "Bas-Rhin", "Haut-Rhin", "Vosges"),
-    "Normandie" => array("Calvados", "Eure", "Manche", "Orne", "Seine-Maritime")
+    "Hauts-de-france" => array("Aisne" => 02, "Nord" => 59, "Oise" => 60, "Pas-de-Calais" => 62, "Somme" => 80),
+    "Bretagne" => array("Côtes d'Armor" => 22, "Finistère" => 29, "Ille-et-Vilaine" => 35, "Morbihan" => 59),
+    "Grand-Est" => array("Ardennes" => 8 , "Aube" => 10, "Marne" => 51, "Haute-Marne" => 52, "Meurthe-et-Moselle" => 54, "Meuse" => 55, "Moselle" => 57, "Bas-Rhin" => 67, "Haut-Rhin" => 68, "Vosges" => 88),
+    "Normandie" => array("Calvados" => 14, "Eure" => 27, "Manche" => 50, "Orne" => 61, "Seine-Maritime" => 76)
 );
 
+//afficher seulement les regions 
+$regions = array_keys($departements);
