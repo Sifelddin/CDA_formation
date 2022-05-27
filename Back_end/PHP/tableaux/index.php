@@ -1,6 +1,9 @@
 <?php
 
 require_once 'src.php';
+$a = 15;
+
+$a = 46;
 
 ?>
 
@@ -50,8 +53,28 @@ require_once 'src.php';
                         <td><?= $country ?></td>
                     </tr>
                 <?php endforeach; ?>
-                <tr><td><strong>nombre de pays <?= $nb ?></strong> </td></tr>
-                
+                <tr>
+                    <td><strong>nombre de pays <?= $nb ?></strong> </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table">
+            <thead>
+
+                <?php foreach ($departements as $index => $regions) : ?>
+                    <th> <?= $index ?></th>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php foreach ($regions  as $region =>  $num_region) : ?>
+
+                        <td><?= $region . " " . "(" . $num_region . ")" ?></td>
+
+                    <?php endforeach; ?>
+                </tr>
+
+            <?php endforeach; ?>
             </tbody>
         </table>
     </main>
